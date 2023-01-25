@@ -32,3 +32,6 @@ Matrix2D(1, 4)
 
 Press any key to exit...
 ```
+
+You can see this graph of the Loss of the `XOR` and `Blobs` Examples
+![Loss Examples Figure](./output/plot.png)

@@ -44,7 +44,8 @@ void MatrixSave(Matrix2D *mat, char *filename) {
     }
     for(int i=0; i<(int)mat->m; i++){
         for(int j=0; j<(int)mat->n; j++){
-            fprintf(fptr, "%lf ", mat->data[i*mat->n + j]);}}
+            fprintf(fptr, "%lf ", mat->data[i*mat->n + j]);}
+		fprintf(fptr, "\n");}
 }
 
 void MatrixCopy(Matrix2D *mat1, Matrix2D *mat2) {

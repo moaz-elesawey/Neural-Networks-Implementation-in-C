@@ -11,6 +11,8 @@ void SolveXOR() {
     size_t d = 8, k = 1;
     double alpha = 2.3;
 
+	Matrix2D losses = MatrixMake(N_EPOCHS, 1);
+
     Matrix2D X_data = MatrixMake( m, n);
     X_data.data[0] = 0; X_data.data[1] = 0;
     X_data.data[2] = 0; X_data.data[3] = 1;
@@ -48,6 +50,7 @@ void SolveXOR() {
 
         /* Performance Measure */
         double J = MSELoss(&A2, &Y);
+		losses.data[i] = J;
         if (i % 50 == 0)
             printf("Epoch [%4d-%d], Loss = %10.5f\n", i, N_EPOCHS, J);
 
@@ -111,6 +114,7 @@ void SolveXOR() {
         MatrixFree(&dW1); MatrixFree(&db1);
         MatrixFree(&dW2); MatrixFree(&db2);
     }
+	MatrixSave(&losses, "./output/loss.xor.dat");
     printf("\nPress any key to exit..."); getchar();
 
     MatrixFree(&X);
@@ -121,6 +125,8 @@ void SolveXOR() {
 
     MatrixFree(&b1);
     MatrixFree(&b2);
+
+	MatrixFree(&losses);
 }
 
 int main(int argc, char **argv) {

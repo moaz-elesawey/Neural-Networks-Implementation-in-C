@@ -10,6 +10,8 @@ void SolveSklearnBlobs() {
     size_t d = 32, k = 1;
     double alpha = 0.01;
 
+	Matrix2D losses = MatrixMake(N_EPOCHS, 1);
+
     Matrix2D X_data = MatrixRead("data/blobs.x.dat", m, n);
     Matrix2D X = MatrixT(&X_data);
     MatrixFree(&X_data);
@@ -37,6 +39,7 @@ void SolveSklearnBlobs() {
 
         /* Performance Measure */
         double J = MSELoss(&A2, &Y);
+		losses.data[i] = J;
         double acc = AccuracyScore(&Y, &A2);
         double R2 = R2Score(&Y, &A2);
         printf("Epoch [%4d-%d], Loss = %10.5f, Accuracy = %10.5f, R2 Score = %10.4f\n",
@@ -103,6 +106,7 @@ void SolveSklearnBlobs() {
         MatrixFree(&dW2); MatrixFree(&db2);
     }
     printf("\nPress any key to exit..."); getchar();
+	MatrixSave(&losses, "./output/loss.blobs.dat");
 
     MatrixFree(&X);
     MatrixFree(&Y);
@@ -112,6 +116,8 @@ void SolveSklearnBlobs() {
 
     MatrixFree(&b1);
     MatrixFree(&b2);
+
+	MatrixFree(&losses);
 }
 
 int main(int argc, char **argv) {
