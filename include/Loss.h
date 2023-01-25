@@ -6,15 +6,15 @@
 
 
 double MSELoss(Matrix2D *y, Matrix2D *h) {
-	Matrix2D t1 = MatrixSubMatrix(y, h);
-	Matrix2D t2 = MatrixMulMatrix(&t1, &t1);
-	Matrix2D t3 = MatrixSum(&t2, 1);
+    Matrix2D t1 = MatrixSubMatrix(y, h);
+    Matrix2D t2 = MatrixMulMatrix(&t1, &t1);
+    Matrix2D t3 = MatrixSum(&t2, 1);
 
-	double J = t3.data[0] / y->m;
+    double J = t3.data[0] / y->m;
 
-	MatrixFree(&t1); MatrixFree(&t2); MatrixFree(&t3); 
-	
-	return J;
+    MatrixFree(&t1); MatrixFree(&t2); MatrixFree(&t3); 
+    
+    return J;
 }
 
 #endif /* _LOSS_H_ */

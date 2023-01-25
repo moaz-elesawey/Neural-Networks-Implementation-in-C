@@ -7,10 +7,10 @@
 
 
 typedef struct {
-	size_t m; /* nrows */
-	size_t n; /* ncols */
-	double *data; /* data[i][j] = data[i*n + j] */
-	int refcounts;
+    size_t m; /* nrows */
+    size_t n; /* ncols */
+    double *data; /* data[i][j] = data[i*n + j] */
+    int refcounts;
 }Matrix2D;
 
 Matrix2D MatrixMake(size_t m, size_t n);
